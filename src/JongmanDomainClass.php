@@ -1,5 +1,5 @@
 <?php
 
-namespace Soap\JongmanDomain;
+namespace Soap\Jongman\Core;
 
 class JongmanDomainClass {}

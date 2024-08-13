@@ -16,7 +16,15 @@
         }
     ],
     "require": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "illuminate/cache": "^11.14",
+        "illuminate/config": "^11.14",
+        "illuminate/container": "^11.14",
+        "illuminate/filesystem": "^11.14",
+        "illuminate/redis": "^11.14",
+        "predis/predis":"^3.0",
+        "nesbot/carbon": "^3.6",
+        "symfony/finder": "^7.1"
     },
     "require-dev": {
         "pestphp/pest": "^2.20",
@@ -25,12 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Soap\\Jongman\\Domain\\": "src"
+            "Soap\\Jongman\\Core\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Soap\\Jongman\\Domain\\Tests\\": "tests"
+            "Soap\\Jongman\\Core\\Tests\\": "tests"
         }
     },
     "scripts": {
