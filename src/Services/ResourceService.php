@@ -2,4 +2,7 @@
 
 namespace Soap\Jongman\Core\Services;
 
-class ResourceService {}
+use Soap\Jongman\Core\Interfaces\ResourceServiceInterface;
+
+class ResourceService implements ResourceServiceInterface 
+{}
