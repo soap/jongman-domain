@@ -2,9 +2,7 @@
 
 namespace Soap\Jongman\Core\Services;
 
-use App\Repositories\ScheduleRepository;
 use Soap\Jongman\Core\Application\User\User;
-use Soap\Jongman\Core\Factories\DailyLayoutFactory;
 use Soap\Jongman\Core\Interfaces\DailyLayoutFactoryInterface;
 use Soap\Jongman\Core\Interfaces\LayoutFactoryInterface;
 use Soap\Jongman\Core\Interfaces\ScheduleRepositoryInterface;
