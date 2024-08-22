@@ -5,6 +5,7 @@ namespace Soap\Jongman\Core\Services;
 use Soap\Jongman\Core\Application\User\User;
 use Soap\Jongman\Core\Interfaces\DailyLayoutFactoryInterface;
 use Soap\Jongman\Core\Interfaces\LayoutFactoryInterface;
+use Soap\Jongman\Core\Interfaces\ResourceServiceInterface;
 use Soap\Jongman\Core\Interfaces\ScheduleRepositoryInterface;
 use Soap\Jongman\Core\Interfaces\ScheduleServiceInterface;
 
