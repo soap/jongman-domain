@@ -4,27 +4,15 @@ namespace Soap\Jongman\Core\Application\User;
 
 class User
 {
-    private $id;
 
-    private $first_name;
-
-    private $last_name;
-
-    private $email;
-
-    private $roles;
-
-    private $timezone;
-
-    public function __construct($first_name, $last_name, $email, $roles, $timezone)
+    public function __construct(
+        private int $id, 
+        private string $first_name, 
+        private string $last_name, 
+        private string $email, 
+        private array $roles = [], 
+        private string $timezone = 'UTC')
     {
-        $this->id = $id;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->email = $email;
-        $this->password = $password;
-        $this->roles = $roles;
-        $this->timezone = $timezone;
     }
 
     public function __get($name)
@@ -35,5 +23,20 @@ class User
     public function __set($name, $value)
     {
         $this->$name = $value;
+    }
+
+    public function isLoggedIn()
+    {
+        return $this->id !== null;
+    }
+
+    public function isGuest()
+    {
+        return !$this->isLoggedIn();
+    }
+
+    public function fullName()
+    {
+        return new fullName($this->first_name, $this->last_name);
     }
 }
