@@ -3,45 +3,25 @@
 namespace Soap\Jongman\Core\Application\Config;
 
 use Illuminate\Config\Repository;
-use Symfony\Component\Finder\Finder;
+use Soap\Jongman\Core\Interfaces\ConfigurationInterface;
 
-class Config extends Repository
+class Config implements ConfigurationInterface
 {
-    public function loadConfig($path, $enviroment = null)
+    protected $_config;
+
+    private static $_instance = null;
+
+    public static function getInstance()
     {
-        $this->configPath = $path;
-        foreach ($this->getConfigurationFiles() as $fileKey => $filePath) {
-            $this->set($fileKey, require $filePath);
+        if (self::$_instance === null) {
+            self::$_instance = new Config;
         }
 
-        foreach ($this->getConfigurationFiles($enviroment) as $fileKey => $filePath) {
-            $envConfig = require $filePath;
-
-            foreach ($envConfig as $envKey => $value) {
-                $this->set($fileKey.' . '.$envKey, $envValue);
-            }
-        }
+        return self::$_instance;
     }
 
-    public function getConfigurationFiles($enviroment = null)
+    public function register($configFile, $overwrite = false)
     {
-        $path = $this->configPath;
-
-        if ($environment) {
-            $path .= '/'.$environment;
-        }
-
-        if (! is_dir($path)) {
-            return [];
-        }
-
-        $files = [];
-        $phpFiles = Finder::create()->files()->name('*.php')->in($path)->depth(0);
-
-        foreach ($phpFiles as $file) {
-            $files[basename($file->getRealPath(), '.php')] = $file->getRealPath();
-        }
-
-        return $files;
+        $this - $_config = new Repository(require $configFile);
     }
 }
