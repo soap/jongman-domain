@@ -51,7 +51,7 @@ class RepeatWeekly extends RepeatOptionsAbstract
             }
         }
 
-        $rawStart = $startingRange->gtBegin();
+        $rawStart = $startingRange->getBegin();
         $rawEnd = $startingRange->getEnd();
 
         $week = 1;

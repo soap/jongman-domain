@@ -193,7 +193,7 @@ class DateRange
      */
     public function equals(DateRange $otherRange)
     {
-        return $this->_begin->equals($otherRange->getBegin()) && $this->_end->equls($otherRange->getEnd());
+        return $this->_begin->equals($otherRange->getBegin()) && $this->_end->equals($otherRange->getEnd());
     }
 
     /**
@@ -203,6 +203,11 @@ class DateRange
     public function timezone($timezone)
     {
         return new DateRange($this->_begin->toTimezone($timezone), $this->_end->toTimezone($timezone));
+    }
+
+    public function toTimezone($timezone)
+    {
+        return $this->timezone($timezone);
     }
 
     /**

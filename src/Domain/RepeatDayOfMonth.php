@@ -2,6 +2,7 @@
 
 namespace Soap\Jongman\Core\Domain;
 
+use Soap\Jongman\Core\Common\Date;
 use Soap\Jongman\Core\Common\DateRange;
 
 class RepeatDayOfMonth extends RepeatOptionsAbstract
@@ -15,23 +16,23 @@ class RepeatDayOfMonth extends RepeatOptionsAbstract
         parent::__construct($interval, $terminationDate);
     }
 
-    public function GetDates(DateRange $startingRange)
+    public function getDates(DateRange $startingRange)
     {
         $dates = [];
 
-        $startDate = $startingRange->GetBegin();
-        $endDate = $startingRange->GetEnd();
+        $startDate = $startingRange->getBegin();
+        $endDate = $startingRange->getEnd();
 
-        $rawStart = $startingRange->GetBegin();
-        $rawEnd = $startingRange->GetEnd();
+        $rawStart = $startingRange->getBegin();
+        $rawEnd = $startingRange->getEnd();
 
         $monthsFromStart = 1;
-        while ($startDate->DateCompare($this->_terminationDate) <= 0) {
+        while ($startDate->dateCompare($this->_terminationDate) <= 0) {
             $monthAdjustment = $monthsFromStart * $this->_interval;
-            if ($this->DayExistsInNextMonth($rawStart, $monthAdjustment)) {
-                $startDate = $this->GetNextMonth($rawStart, $monthAdjustment);
-                $endDate = $this->GetNextMonth($rawEnd, $monthAdjustment);
-                if ($startDate->DateCompare($this->_terminationDate) <= 0) {
+            if ($this->dayExistsInNextMonth($rawStart, $monthAdjustment)) {
+                $startDate = $this->getNextMonth($rawStart, $monthAdjustment);
+                $endDate = $this->getNextMonth($rawEnd, $monthAdjustment);
+                if ($startDate->dateCompare($this->_terminationDate) <= 0) {
                     $dates[] = new DateRange($startDate, $endDate);
                 }
             }
@@ -41,26 +42,26 @@ class RepeatDayOfMonth extends RepeatOptionsAbstract
         return $dates;
     }
 
-    public function RepeatType()
+    public function repeatType()
     {
         return RepeatType::Monthly;
     }
 
-    public function ConfigurationString()
+    public function configurationString()
     {
         $config = parent::ConfigurationString();
 
         return sprintf('%s|type=%s', $config, RepeatMonthlyType::DayOfMonth);
     }
 
-    private function DayExistsInNextMonth($date, $monthsFromStart)
+    private function dayExistsInNextMonth($date, $monthsFromStart)
     {
-        $dateToCheck = Date::Create($date->Year(), $date->Month(), 1, 0, 0, 0, $date->Timezone());
-        $nextMonth = $this->GetNextMonth($dateToCheck, $monthsFromStart);
+        $dateToCheck = Date::create($date->year(), $date->month(), 1, 0, 0, 0, $date->timezone());
+        $nextMonth = $this->getNextMonth($dateToCheck, $monthsFromStart);
 
-        $daysInMonth = $nextMonth->Format('t');
+        $daysInMonth = $nextMonth->format('t');
 
-        return $date->Day() <= $daysInMonth;
+        return $date->day() <= $daysInMonth;
     }
 
     /**
@@ -68,10 +69,10 @@ class RepeatDayOfMonth extends RepeatOptionsAbstract
      * @param  int  $monthsFromStart
      * @return Date
      */
-    private function GetNextMonth($date, $monthsFromStart)
+    private function getNextMonth($date, $monthsFromStart)
     {
         $yearOffset = 0;
-        $computedMonth = $date->Month() + $monthsFromStart;
+        $computedMonth = $date->month() + $monthsFromStart;
         $month = $computedMonth;
 
         if ($computedMonth > 12) {
@@ -79,14 +80,14 @@ class RepeatDayOfMonth extends RepeatOptionsAbstract
             $month = ($computedMonth - 1) % 12 + 1;
         }
 
-        return Date::Create(
-            $date->Year() + $yearOffset,
+        return Date::create(
+            $date->year() + $yearOffset,
             $month,
-            $date->Day(),
-            $date->Hour(),
-            $date->Minute(),
-            $date->Second(),
-            $date->Timezone()
+            $date->day(),
+            $date->hour(),
+            $date->minute(),
+            $date->second(),
+            $date->timezone()
         );
     }
 }

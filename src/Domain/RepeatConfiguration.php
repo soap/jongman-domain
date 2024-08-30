@@ -10,27 +10,27 @@ class RepeatConfiguration
     /**
      * @var string
      */
-    public $Type;
+    public $type;
 
     /**
      * @var string
      */
-    public $Interval;
+    public $interval;
 
     /**
      * @var Date
      */
-    public $TerminationDate;
+    public $terminationDate;
 
     /**
      * @var array
      */
-    public $Weekdays;
+    public $weekdays;
 
     /**
      * @var string
      */
-    public $MonthlyType;
+    public $monthlyType;
 
     /**
      * @param  string  $repeatType
@@ -58,7 +58,7 @@ class RepeatConfiguration
         $config->interval = self::get($configParts, 'interval');
         $config->setTerminationDate(self::get($configParts, 'termination'));
         $config->setWeekdays(self::get($configParts, 'days'));
-        $config->MonthlyType = self::get($configParts, 'type');
+        $config->monthlyType = self::get($configParts, 'type');
 
         return $config;
     }
@@ -77,16 +77,16 @@ class RepeatConfiguration
     private function setTerminationDate($terminationDateString)
     {
         if (! empty($terminationDateString)) {
-            $this->TerminationDate = Date::fromDatabase($terminationDateString);
+            $this->terminationDate = Date::fromDatabase($terminationDateString);
         } else {
-            $this->TerminationDate = NullDate::instance();
+            $this->terminationDate = NullDate::instance();
         }
     }
 
     private function setWeekdays($weekdays)
     {
         if ($weekdays != null && $weekdays != '') {
-            $this->Weekdays = explode(',', $weekdays);
+            $this->weekdays = explode(',', $weekdays);
         }
     }
 }
