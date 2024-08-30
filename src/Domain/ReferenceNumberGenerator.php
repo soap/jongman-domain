@@ -1,6 +1,6 @@
 <?php
 
-namespace Soap\Jongman\Core;
+namespace Soap\Jongman\Core\Domain;
 
 class ReferenceNumberGenerator
 {

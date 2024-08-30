@@ -1,6 +1,6 @@
 <?php
 
-namespace Soap\Jongman\Core\Application\User;
+namespace Soap\Jongman\Core\Application\UserSession;
 
 class UserSession
 {
