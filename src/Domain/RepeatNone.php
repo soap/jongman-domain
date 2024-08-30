@@ -4,7 +4,6 @@ namespace Soap\Jongman\Core\Domain;
 
 use Soap\Jongman\Core\Common\Date;
 use Soap\Jongman\Core\Common\DateRange;
-use Soap\Jongman\Core\Domain\RepeatType;
 use Soap\Jongman\Core\Interfaces\RepeatOptionsInterface;
 
 class RepeatNone implements RepeatOptionsInterface

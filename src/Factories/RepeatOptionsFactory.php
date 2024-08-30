@@ -48,7 +48,6 @@ class RepeatOptionsFactory
     }
 
     /**
-     * @param  RepeatOptionsCompositeInterface  $composite
      * @param  string  $terminationDateTimezone
      * @return RepeatOptionsInterface
      */

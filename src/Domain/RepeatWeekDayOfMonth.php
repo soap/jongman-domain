@@ -4,9 +4,6 @@ namespace Soap\Jongman\Core\Domain;
 
 use Soap\Jongman\Core\Common\Date;
 use Soap\Jongman\Core\Common\DateRange;
-use Soap\Jongman\Core\Domain\RepeatMonthlyType;
-use Soap\Jongman\Core\Domain\RepeatOptionsAbstract;
-use Soap\Jongman\Core\Domain\RepeatType;
 
 class RepeatWeekDayOfMonth extends RepeatOptionsAbstract
 {

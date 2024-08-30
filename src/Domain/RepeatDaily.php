@@ -3,8 +3,6 @@
 namespace Soap\Jongman\Core\Domain;
 
 use Soap\Jongman\Core\Common\DateRange;
-use Soap\Jongman\Core\Domain\RepeatOptionsAbstract;
-use Soap\Jongman\Core\Domain\RepeatType;
 
 class RepeatDaily extends RepeatOptionsAbstract
 {

@@ -10,11 +10,10 @@ use Soap\Jongman\Core\Domain\RepeatWeekly;
 use Soap\Jongman\Core\Domain\RepeatYearly;
 use Soap\Jongman\Core\Factories\RepeatOptionsFactory;
 
-
 test('no repeat never has repeat dates', function () {
     $duration = DateRange::create('2020-01-01', '2020-01-02', 'UTC');
-    
-    $repeatOptions = new RepeatNone();
+
+    $repeatOptions = new RepeatNone;
 
     $dates = $repeatOptions->getDates($duration);
 
@@ -36,48 +35,45 @@ test('termination date is inclusive', function () {
 });
 
 test('factory can create RepeatDailyOptions', function () {
-    $factory = new RepeatOptionsFactory();
+    $factory = new RepeatOptionsFactory;
 
     $options = $factory->create('daily', 1, null, null, null, []);
 
     expect($options)->toBeInstanceOf(RepeatDaily::class);
 });
 
-
 test('factory can create RepeatWeeklyOptions', function () {
-    $factory = new RepeatOptionsFactory();
+    $factory = new RepeatOptionsFactory;
 
     $options = $factory->create('weekly', 1, null, [], null, []);
 
     expect($options)->toBeInstanceOf(RepeatWeekly::class);
 });
 
-test('factory can create DayOfMonthRepeatOptions', function() {
-    $factory = new RepeatOptionsFactory();
+test('factory can create DayOfMonthRepeatOptions', function () {
+    $factory = new RepeatOptionsFactory;
     $options = $factory->create('monthly', 1, null, null, 'dayOfMonth', []);
 
     expect($options)->toBeInstanceOf(RepeatDayOfMonth::class);
 });
 
-test('factory can create WeekDayOfMonthRepeatOptions', function() {
-    $factory = new RepeatOptionsFactory();
+test('factory can create WeekDayOfMonthRepeatOptions', function () {
+    $factory = new RepeatOptionsFactory;
     $options = $factory->create('monthly', 1, null, null, null, []);
-    
+
     expect($options)->toBeInstanceOf(RepeatWeekDayOfMonth::class);
 });
 
-test('factory can create YearlyRepeatOptions', function(){
-    $factory = new RepeatOptionsFactory();
+test('factory can create YearlyRepeatOptions', function () {
+    $factory = new RepeatOptionsFactory;
     $options = $factory->create('yearly', 1, null, null, null, []);
 
     expect($options)->toBeInstanceOf(RepeatYearly::class);
 });
 
-test('factory can create NoRepeatOptions', function(){
-    $factory = new RepeatOptionsFactory();
+test('factory can create NoRepeatOptions', function () {
+    $factory = new RepeatOptionsFactory;
     $options = $factory->create('none', 1, null, null, null, []);
 
     expect($options)->toBeInstanceOf(RepeatNone::class);
 });
-
-
