@@ -203,11 +203,11 @@ class Reservation
         $this->setReferenceNumber($referenceNumber);
 
         if (! empty($reservationId)) {
-            $this->SetReservationId($reservationId);
+            $this->setReservationId($reservationId);
         }
 
         if (empty($referenceNumber)) {
-            $this->setReferenceNumber(ReferenceNumberGenerator::generate());
+            $this->setReferenceNumber(ReferenceNumberGenerator::make()->generate());
         }
 
         $this->checkinDate = new NullDate;
@@ -494,7 +494,7 @@ class Reservation
     /**
      * @return string[]
      */
-    public function UnchangedParticipatingGuests()
+    public function unchangedParticipatingGuests()
     {
         return $this->unchangedParticipatingGuests;
     }

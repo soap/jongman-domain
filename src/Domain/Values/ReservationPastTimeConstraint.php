@@ -6,9 +6,8 @@ class ReservationPastTimeConstraint
 {
     public static function IsPast(Date $begin, Date $end): bool
     {
-        $constraint = Configuration::Instance()->GetSectionKey(
-            ConfigSection::RESERVATION,
-            ConfigKeys::RESERVATION_START_TIME_CONSTRAINT
+        $constraint = JongmanFactory::getConfige()->get(
+            'jongman.reservation.start_time_constraint'
         );
 
         if (empty($constraint)) {

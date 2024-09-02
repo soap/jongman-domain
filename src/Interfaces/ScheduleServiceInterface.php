@@ -2,7 +2,7 @@
 
 namespace Soap\Jongman\Core\Interfaces;
 
-use Soap\Jongman\Core\Application\User\User;
+use Soap\Jongman\Core\Application\User\UserSession;
 
 interface ScheduleServiceInterface
 {
@@ -11,7 +11,7 @@ interface ScheduleServiceInterface
      * @param  User  $session
      * @return Schedule[]
      */
-    public function getAll($includeInaccessible, User $user);
+    public function getAll($includeInaccessible, UserSession $user);
 
     /**
      * @param  int  $scheduleId
