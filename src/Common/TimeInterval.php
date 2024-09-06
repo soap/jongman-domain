@@ -10,20 +10,21 @@ class TimeInterval
     private $interval = null;
 
     /**
-     * @param int $seconds
+     * @param  int  $seconds
      */
     public function __construct($seconds)
     {
         $this->interval = null;
 
-        if (!empty($seconds)) {
+        if (! empty($seconds)) {
             $this->interval = new DateDiff($seconds);
         }
     }
 
     /**
      * @static
-     * @param string|int $interval string interval in format: #d#h#m ie: 22d4h12m or total seconds
+     *
+     * @param  string|int  $interval  string interval in format: #d#h#m ie: 22d4h12m or total seconds
      * @return TimeInterval
      */
     public static function parse($interval)
@@ -36,7 +37,7 @@ class TimeInterval
             return new TimeInterval(0);
         }
 
-        if (!is_numeric($interval)) {
+        if (! is_numeric($interval)) {
             $seconds = DateDiff::fromTimeString($interval)->TotalSeconds();
         } else {
             $seconds = $interval;
@@ -46,7 +47,6 @@ class TimeInterval
     }
 
     /**
-     * @param $minutes
      * @return TimeInterval
      */
     public static function fromMinutes($minutes)
@@ -55,7 +55,6 @@ class TimeInterval
     }
 
     /**
-     * @param $hours
      * @return TimeInterval
      */
     public static function fromHours($hours)
@@ -64,7 +63,6 @@ class TimeInterval
     }
 
     /**
-     * @param $days
      * @return TimeInterval
      */
     public static function fromDays($days)
@@ -129,7 +127,7 @@ class TimeInterval
      */
     public function toDatabase()
     {
-        if ($this->interval != null && !$this->interval->isNull()) {
+        if ($this->interval != null && ! $this->interval->isNull()) {
             return $this->interval->totalSeconds();
         }
 
@@ -144,6 +142,7 @@ class TimeInterval
         if ($this->interval != null) {
             return $this->interval->totalSeconds();
         }
+
         return 0;
     }
 
@@ -172,13 +171,13 @@ class TimeInterval
     }
 
     /**
-     * @param bool $includeTotalHours
+     * @param  bool  $includeTotalHours
      * @return string
      */
     public function toString($includeTotalHours)
     {
         if ($includeTotalHours) {
-            return $this->__toString() . ' (' . $this->totalSeconds() / 3600 . 'h)';
+            return $this->__toString().' ('.$this->totalSeconds() / 3600 .'h)';
         }
 
         return $this->__toString();

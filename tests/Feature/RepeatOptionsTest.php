@@ -293,7 +293,7 @@ test('configuration string can be serialized', function () {
     expect(RepeatType::Daily)->toBe($config->type);
     expect($config->interval)->toEqual(10);
     expect($config->terminationDate)->toEqual($terminationDate);
-    
+
     // weekly
     $weekdays = [1, 3, 4, 5];
     $weekly = new RepeatWeekly($interval, $terminationDate, $weekdays);
