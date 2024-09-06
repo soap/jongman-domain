@@ -27,8 +27,9 @@
         "symfony/finder": "^7.1"
     },
     "require-dev": {
-        "pestphp/pest": "^2.20",
         "laravel/pint": "^1.0",
+        "pestphp/pest": "^2.20",
+        "phpstan/phpstan": "^1.12",
         "spatie/ray": "^1.28"
     },
     "autoload": {

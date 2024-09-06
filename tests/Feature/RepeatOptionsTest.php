@@ -284,16 +284,16 @@ test('configuration string can be serialized', function () {
 
     // none
     $config = RepeatConfiguration::create(RepeatType::None, '');
-    $this->assertEquals(RepeatType::None, $config->type);
+    expect(RepeatType::None)->toEqual($config->type);
 
     // daily
     $daily = new RepeatDaily($interval, $terminationDate);
     $config = RepeatConfiguration::create($daily->repeatType(), $daily->configurationString());
 
-    $this->assertEquals(RepeatType::Daily, $config->type);
-    $this->assertEquals(10, $config->interval);
-    $this->assertEquals($terminationDate, $config->terminationDate);
-
+    expect(RepeatType::Daily)->toBe($config->type);
+    expect($config->interval)->toEqual(10);
+    expect($config->terminationDate)->toEqual($terminationDate);
+    
     // weekly
     $weekdays = [1, 3, 4, 5];
     $weekly = new RepeatWeekly($interval, $terminationDate, $weekdays);
@@ -326,9 +326,9 @@ test('configuration string can be serialized', function () {
     // custom
     $custom = new RepeatCustom([]);
     $config = RepeatConfiguration::create($custom->repeatType(), $custom->configurationString());
-    $this->assertEquals(RepeatType::Custom, $config->type);
-    $this->assertEquals('', $config->interval);
-    $this->assertEquals(new NullDate, $config->terminationDate);
+    expect($config->type)->toEqual(RepeatType::Custom);
+    expect($config->interval)->toEqual('');
+    expect($config->terminationDate)->toEqual(new NullDate);
 });
 
 test('repeat when repeating day before first day of month', function () {
@@ -369,9 +369,10 @@ test('repeating across European daylight savings', function () {
     foreach ($dates as $date) {
         $date = $date->toTimezone('Europe/London');
 
-        $this->assertEquals(9, $date->getBegin()->hour(), $date->__toString());
-        $this->assertEquals(10, $date->getEnd()->hour());
-        $this->assertEquals(3, $date->getBegin()->weekday());
+        expect($date->getBegin()->hour())->toEqual(9);
+        // $this->assertEquals(9, $date->getBegin()->hour(), $date->__toString());
+        expect($date->getEnd()->hour())->toEqual(10);
+        expect($date->getBegin()->weekday())->toEqual(3);
     }
 });
 
@@ -385,8 +386,9 @@ test('repeating across European daylightsavings with other example', function ()
     foreach ($dates as $date) {
         $date = $date->toTimezone('Europe/London');
         $this->assertEquals(13, $date->getBegin()->hour(), $date->__toString());
-        $this->assertEquals(14, $date->getEnd()->hour());
-        $this->assertEquals(3, $date->getBegin()->weekday());
+
+        expect($date->getEnd()->hour())->toEqual(14);
+        expect($date->getBegin()->weekday())->toEqual(3);
     }
 });
 
@@ -396,7 +398,7 @@ test('repeat first FFriday when the firs dDay of the month is a Friday', functio
 
     /** @var $dates DateRange[] */
     $dates = $repeat->getDates($firstFriday);
-    $this->assertEquals(1, $dates[3]->getBegin()->day());
+    expect($dates[3]->getBegin()->day())->toBe('01');
 });
 
 test('Factory creates Custom RepeatOptions', function () {
@@ -412,8 +414,9 @@ test('reepeat Custom works correctly', function () {
     $repeat = new RepeatCustom($repeatDates);
 
     $dates = $repeat->getDates($reservationDate);
-    $this->assertEquals(3, count($dates));
-    $this->assertEquals(DateRange::create('2020-02-05 2:30', '2020-02-06 4:00', $timezone), $dates[0]);
-    $this->assertEquals(DateRange::create('2020-02-22 2:30', '2020-02-23 4:00', $timezone), $dates[1]);
-    $this->assertEquals(DateRange::create('2020-05-19 2:30', '2020-05-20 4:00', $timezone), $dates[2]);
+
+    expect(count($dates))->toBe(3);
+    expect(DateRange::create('2020-02-05 2:30', '2020-02-06 4:00', $timezone))->toEqual($dates[0]);
+    expect(DateRange::create('2020-02-22 2:30', '2020-02-23 4:00', $timezone))->toEqual($dates[1]);
+    expect(DateRange::create('2020-05-19 2:30', '2020-05-20 4:00', $timezone))->toEqual($dates[2]);
 });

@@ -252,7 +252,7 @@ class Date
      */
     public function getTime()
     {
-        return new time($this->hour(), $this->minute(), $this->second(), $this->timezone());
+        return new Time($this->hour(), $this->minute(), $this->second(), $this->timezone());
     }
 
     /**
@@ -542,7 +542,7 @@ class Date
         $ts = $this->toUtc()->timestamp() - ($minutes * 60);
         $utcDate = new Date(gmdate(self::SHORT_FORMAT, $ts), 'UTC');
 
-        return $utcDate - toTimezone($this->timezone);
+        return $utcDate->toTimezone($this->timezone);
         //return new Date($this->Format(self::SHORT_FORMAT) . " +" . $minutes . " minutes", $this->timezone);
     }
 
@@ -570,7 +570,7 @@ class Date
      */
     public function setTime(Time $time, $isEndTime = false)
     {
-        $date = Date::Create(
+        $date = Date::create(
             $this->year(),
             $this->month(),
             $this->day(),
