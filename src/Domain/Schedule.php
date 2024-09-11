@@ -4,7 +4,7 @@ namespace Soap\Jongman\Core\Domain;
 
 class Schedule
 {
-    public function fromModel($model)
+    public static function fromModel($model)
     {
         $schedule = new Schedule(
             $model->id,
