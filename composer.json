@@ -17,11 +17,11 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/cache": "^11.14",
-        "illuminate/config": "^11.14",
-        "illuminate/container": "^11.14",
-        "illuminate/filesystem": "^11.14",
-        "illuminate/redis": "^11.14",
+        "illuminate/cache": "^11.14||^12.0",
+        "illuminate/config": "^11.14||^12.0",
+        "illuminate/container": "^11.14||^12.0",
+        "illuminate/filesystem": "^11.14||^12.0",
+        "illuminate/redis": "^11.14||^12.0",
         "predis/predis":"^3.2",
         "nesbot/carbon": "^3.6",
         "symfony/finder": "^7.1"
