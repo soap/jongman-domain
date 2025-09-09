@@ -2,6 +2,10 @@
 
 All notable changes to `jongman-domain` will be documented in this file.
 
+## Add laravel 12 support - 2025-09-09
+
+**Full Changelog**: https://github.com/soap/jongman-domain/compare/v0.0.5...v0.0.6
+
 ## v0.0.5 - 2025-09-08
 
 ### What's Changed
